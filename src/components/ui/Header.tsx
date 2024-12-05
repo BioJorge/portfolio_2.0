@@ -6,8 +6,10 @@ import { usePathname } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
 import { NAVLINKS } from "@/constants/navlinks";
 import LanguageToggler from "./LanguageToggler";
+import { useLanguageContext } from "@/context/LanguageProvider";
 
 const Header = () => {
+  const { language } = useLanguageContext();
   const [menuOpen, setMenuOpen] = useState(false);
   // const [configMenuOpen, setConfigMenuOpen] = useState(false);
   const pathname = usePathname();
@@ -39,13 +41,11 @@ const Header = () => {
             <Link
               key={link.href}
               href={link.href}
-              className={`text-lg font-medium transition-colors duration-300 ${
-                pathname === link.href
-                  ? "text-purple-500"
-                  : "text-foreground hover:text-purple-500"
+              className={`text-lg font-medium transition-colors duration-300 hover:txt-primary ${
+                pathname === link.href ? "text-primary" : "text-secondary"
               }`}
             >
-              {link.label}
+              {link.label[language]}
             </Link>
           ))}
 

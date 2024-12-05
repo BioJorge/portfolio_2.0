@@ -45,8 +45,8 @@ export default function RootLayout({
         >
           <LanguageWrapper>
             <Header />
-            <main className="flex h-full w-full flex-row items-stretch gap-2 p-2">
-              <div className="rounded-lg shadow-lg grow">{children}</div>
+            <main className="flex h-full w-full flex-row items-stretch">
+              {children}
             </main>
           </LanguageWrapper>
         </ThemeProvider>
