@@ -1,4 +1,4 @@
-import LanguageToggler from "@/components/ui/languageToggler";
+import LanguageToggler from "@/components/ui/LanguageToggler";
 import { ThemeToggle } from "@/components/ui/ThemeToggle";
 
 export default function Home() {

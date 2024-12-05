@@ -1,3 +1,4 @@
+//src/components/ui/ThemeToggle.tsx
 "use client";
 
 import * as React from "react";
@@ -5,31 +6,34 @@ import { Moon, Sun } from "lucide-react";
 import { useTheme } from "next-themes";
 
 export const ThemeToggle = ({
-  acessibilityText,
+  accessibilityText,
 }: {
-  acessibilityText: string;
+  accessibilityText: string;
 }) => {
   const { theme, setTheme } = useTheme();
-  const [mounted, isMounted] = React.useState(false);
+  const [mounted, setMounted] = React.useState(false);
 
   React.useEffect(() => {
-    isMounted(true);
+    setMounted(true);
   }, []);
 
-  if (!mounted) return <button disabled={true}></button>;
+  if (!mounted) {
+    return null; // Avoid rendering until mounted
+  }
 
-  const dark = theme === "dark";
+  const isDark = theme === "dark";
+
   return (
     <button
-      onClick={() => setTheme(dark ? "light" : "dark")}
-      className="hover:cursor-pointer bg-transparent text-foreground w-fit p-0 text-xl"
+      onClick={() => setTheme(isDark ? "light" : "dark")}
+      className="hover:cursor-pointer bg-transparent w-fit p-0 text-xl"
     >
-      {dark ? (
-        <Sun className="hover:text-amber-400 bg-transparent" />
+      {isDark ? (
+        <Sun className="hover:text-amber-400 bg-transparent text-foreground" />
       ) : (
-        <Moon className="hover:text-purple-400 bg-transparent" />
+        <Moon className="hover:text-sky-400 bg-transparent text-foreground" />
       )}
-      <span className="sr-only">{acessibilityText}</span>
+      <span className="sr-only">{accessibilityText}</span>
     </button>
   );
 };
