@@ -8,15 +8,13 @@ body {
 
 @layer base {
   :root {
-    --background: 180 5% 98%;
-    --foreground: 180 8% 4%;
+    --background: 0 0% 98.8%;
+    --foreground: 201, 100%, 14%;
 
-    /* Cyan/Blue from the image */
-    --primary: 180 100% 50%;
+    --primary: 0, 69%, 50%;
     --primary-foreground: 180 5% 98%;
 
-    /* Pink from the image */
-    --secondary: 319, 98%, 51%;
+    --secondary: 31, 100%, 48%;
     --secondary-foreground: 180 5% 98%;
 
     --card: 180 5% 98%;
@@ -27,7 +25,7 @@ body {
     --muted: 180 5% 90%;
     --muted-foreground: 180 5% 40%;
 
-    --accent: 326 80% 95%;
+    --accent: 40, 97%, 64%;
     --accent-foreground: 180 8% 4%;
 
     --destructive: 0 84% 60%;
@@ -48,16 +46,14 @@ body {
   }
 
   .dark {
-    --background: 180 10% 4%;
-    --foreground: 180 5% 98%;
+    --background: 201, 100%, 14%;
+    --foreground: 0 0% 98.8%;
 
-    /* Darker versions of cyan/blue */
-    --primary: 180 100% 40%;
-    --primary-foreground: 180 10% 4%;
+    --primary: 0, 69%, 50%;
+    --primary-foreground: 180 5% 98%;
 
-    /* Darker versions of pink */
-    --secondary: 319, 98%, 51%;
-    --secondary-foreground: 180 10% 4%;
+    --secondary: 31, 100%, 48%;
+    --secondary-foreground: 180 5% 98%;
 
     --card: 180 10% 4%;
     --card-foreground: 180 5% 98%;
@@ -67,8 +63,8 @@ body {
     --muted: 180 10% 15%;
     --muted-foreground: 180 5% 64%;
 
-    --accent: 326 70% 15%;
-    --accent-foreground: 180 5% 98%;
+    --accent: 40, 97%, 64%;
+    --accent-foreground: 180 8% 4%;
 
     --destructive: 0 63% 31%;
     --destructive-foreground: 180 5% 98%;
@@ -84,6 +80,21 @@ body {
     --chart-4: 326 80% 30%;
     --chart-5: 180 60% 20%;
   }
+  html {
+    transition: background-color 0.3s ease-in-out;
+  }
+
+  body {
+    @apply bg-background text-foreground;
+    transition: color 0.3s ease-in-out, background-color 0.3s ease-in-out;
+  }
+
+  /* Remove any opacity transitions from other elements that might cause flashing */
+  *,
+  *::before,
+  *::after {
+    transition: none;
+  }
 }
 
 @layer base {
@@ -92,6 +103,7 @@ body {
   }
   body {
     @apply bg-background text-foreground;
+    transition: background-color 0.3s ease, color 0.3s ease;
   }
 }
 

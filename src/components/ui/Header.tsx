@@ -1,6 +1,5 @@
 "use client";
 import React, { useState } from "react";
-import { Settings, X } from "lucide-react";
 import Link from "next/link";
 import { usePathname } from "next/navigation";
 import { ThemeToggle } from "./ThemeToggle";
@@ -18,6 +17,33 @@ const Header = () => {
     setMenuOpen(!menuOpen);
   };
 
+  const navbar = () => {
+    return (
+      <nav
+        className={`md:flex items-center gap-14 ${
+          menuOpen
+            ? "absolute top-full left-0 w-full p-8 bg-purple-600 shadow-lg"
+            : "hidden md:flex"
+        }`}
+      >
+        {NAVLINKS.map((link) => (
+          <Link
+            key={link.href}
+            href={link.href}
+            className={`text-lg font-medium transition-colors duration-300 hover:txt-primary ${
+              pathname === link.href ? "text-primary" : "text-secondary"
+            }`}
+          >
+            {link.label[language]}
+          </Link>
+        ))}
+
+        <ThemeToggle accessibilityText="theme toggler icon" />
+        <LanguageToggler acessibilityText="language toggler icon" />
+      </nav>
+    );
+  };
+
   // const toggleConfigMenu = () => {
   //   setConfigMenuOpen(!configMenuOpen);
   //   document.body.style.overflowY = configMenuOpen ? "scroll" : "hidden";
@@ -30,28 +56,7 @@ const Header = () => {
           Jorge Filho.
         </Link>
 
-        <nav
-          className={`md:flex items-center gap-14 ${
-            menuOpen
-              ? "absolute top-full left-0 w-full p-8 bg-purple-600 shadow-lg"
-              : "hidden md:flex"
-          }`}
-        >
-          {NAVLINKS.map((link) => (
-            <Link
-              key={link.href}
-              href={link.href}
-              className={`text-lg font-medium transition-colors duration-300 hover:txt-primary ${
-                pathname === link.href ? "text-primary" : "text-secondary"
-              }`}
-            >
-              {link.label[language]}
-            </Link>
-          ))}
-
-          <ThemeToggle accessibilityText="theme toggler icon" />
-          <LanguageToggler acessibilityText="language toggler icon" />
-        </nav>
+        {navbar()}
 
         <div className="md:hidden flex gap-4">
           {/* <button onClick={toggleConfigMenu} className="text-foreground">
