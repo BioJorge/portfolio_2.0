@@ -1,34 +1,47 @@
+import { cn } from "@/lib/utils";
 import React from "react";
+import {
+  BackgroundMovementComponent,
+  DirectionType,
+} from "./BackgroundMovementComponent";
 
 export const CustomButton = ({
   children,
   onClick,
   href,
   download,
-  isPrimary,
+  isDefaultColourPrimary = false,
+  direction,
 }: {
   children: React.ReactNode;
   onClick?: () => void;
   href?: string;
   download?: string;
-  isPrimary?: boolean;
+  isDefaultColourPrimary?: boolean;
+  direction: DirectionType;
 }) => {
-  const buttonClasses = isPrimary
-    ? `relative inline-flex justify-center items-center w-40 h-12
-      bg-primary text-black font-bold rounded overflow-hidden 
-      group hover:text-primary transition`
-    : `relative inline-flex justify-center items-center w-40 h-12
-    bg-transparent border-2 border-primary text-primary font-bold rounded
-    overflow-hidden group hover:bg-primary hover:text-black transition`;
+  const customButtonClasses = isDefaultColourPrimary
+    ? `bg-primary text-black  hover:text-primary`
+    : `bg-transparent text-primary hover:bg-primary hover:text-black`;
+
+  const commonButtonClasses =
+    "relative inline-flex justify-center items-center w-40 h-12 font-bold rounded overflow-hidden group border-2 border-primary transition";
 
   return href ? (
-    <a href={href} download={download} className={buttonClasses}>
-      <span className="absolute inset-0 bg-background transform scale-x-0 group-hover:scale-x-100 transition-transform origin-left"></span>
+    <a
+      href={href}
+      download={download}
+      className={cn(customButtonClasses, commonButtonClasses)}
+    >
+      <BackgroundMovementComponent direction={direction} />
       <span className="relative z-10">{children}</span>
     </a>
   ) : (
-    <button onClick={onClick} className={buttonClasses}>
-      <span className="absolute inset-0 bg-background transform scale-x-0 group-hover:scale-x-100 transition-transform origin-right"></span>
+    <button
+      onClick={onClick}
+      className={cn(customButtonClasses, commonButtonClasses)}
+    >
+      <BackgroundMovementComponent direction={direction} />
       <span className="relative z-10">{children}</span>
     </button>
   );

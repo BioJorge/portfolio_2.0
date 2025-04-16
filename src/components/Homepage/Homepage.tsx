@@ -2,6 +2,7 @@
 import React from "react";
 import { CustomButton } from "../ui/CustomButton";
 import { useLanguageContext } from "@/context/LanguageProvider";
+import SocialMediasComponent from "./SocialMedias";
 
 const HomePage = () => {
   const { language } = useLanguageContext();
@@ -36,35 +37,17 @@ const HomePage = () => {
           <CustomButton
             href="public/CV_EN_Jorge_Filho.pdf"
             download="CV Jorge Filho"
-            isPrimary={true}
+            isDefaultColourPrimary={true}
+            direction="left-to-right"
           >
             {language === "en" ? "Download CV" : "Baixar CV"}
           </CustomButton>
-          <CustomButton isPrimary={false} href="#contact">
+          <CustomButton href="#contact" direction="right-to-left">
             {language === "en" ? "Contact me" : "Contate-me"}
           </CustomButton>
         </div>
 
-        <div className="flex gap-6 mt-10">
-          <a
-            href="https://github.com/BioJorge"
-            className="w-12 h-12 flex items-center justify-center border-2 border-primary text-primary rounded-full hover:bg-primary hover:text-black transition"
-          >
-            <i className="bx bxl-github text-2xl"></i>
-          </a>
-          <a
-            href="https://www.linkedin.com/in/jorge-carlos-sousa-filho-5310861a3/"
-            className="w-12 h-12 flex items-center justify-center border-2 border-primary text-primary rounded-full hover:bg-primary hover:text-black transition"
-          >
-            <i className="bx bxl-linkedin text-2xl"></i>
-          </a>
-          <a
-            href="https://www.instagram.com/biojorge96/"
-            className="w-12 h-12 flex items-center justify-center border-2 border-primary text-primary rounded-full hover:bg-primary hover:text-black transition"
-          >
-            <i className="bx bxl-instagram text-2xl"></i>
-          </a>
-        </div>
+        <SocialMediasComponent />
       </div>
 
       {/* Optional image hover section */}
