@@ -6,6 +6,25 @@ import SocialMediasComponent from "./SocialMedias";
 
 const HomePage = () => {
   const { language } = useLanguageContext();
+
+  const homePageTextContent = {
+    headingText: {
+      pt: "Desenvolvedor Full Stack",
+      en: "Full Stack Web Developer",
+    },
+    welcomeText: {
+      pt: "Bem-vindo ao meu Portfólio! Neste site você obterá uma visão ampla sobre quem é Jorge Filho, suas conquistas educacionais, experiências profissionais, habilidades técnicas e interpessoais, além de links para seus fascinantes Projetos de TI.",
+      en: "Welcome to my Portfolio!! In this site you will get an abroad picture of who Jorge Filho is, his educational accomplishments, career experiences, soft and hard skills, and links to his fascinating IT Projects.",
+    },
+    buttonText1: {
+      pt: "Baixar CV",
+      en: "Download CV",
+    },
+    buttonText2: {
+      pt: "Contate-me",
+      en: "Contact me",
+    },
+  };
   return (
     <section
       id="home"
@@ -18,19 +37,11 @@ const HomePage = () => {
         </h1>
         <div className="relative mt-4 text-primary">
           <h3 className="text-2xl md:text-3xl font-semibold border-b-4 border-primary inline-block">
-            {language === "en"
-              ? "Full Stack Web Developer"
-              : "Desenvolvedor Web Full Stack"}
+            {homePageTextContent.headingText[language]}
           </h3>
         </div>
         <p className="text-gray-300 text-lg mt-4 leading-relaxed">
-          {language === "en"
-            ? `Welcome to my Portfolio!! In this site you will get an overview of who
-          Jorge Filho is, his educational accomplishments, career experiences,
-          soft and hard skills, and links to his fascinating IT Projects.`
-            : `Bem-vindo ao meu Portfolio!! Neste site você terá uma visão geral de quem
-          é Jorge Filho, suas conquistas educacionais, experiências profissionais,
-          habilidades técnicas e comportamentais, e links para seus fascinantes Projetos de TI.`}
+          {homePageTextContent.welcomeText[language]}
         </p>
 
         <div className="flex gap-4 mt-6">
@@ -40,10 +51,10 @@ const HomePage = () => {
             isDefaultColourPrimary={true}
             direction="left-to-right"
           >
-            {language === "en" ? "Download CV" : "Baixar CV"}
+            {homePageTextContent.buttonText1[language]}
           </CustomButton>
           <CustomButton href="#contact" direction="right-to-left">
-            {language === "en" ? "Contact me" : "Contate-me"}
+            {homePageTextContent.buttonText2[language]}
           </CustomButton>
         </div>
 
