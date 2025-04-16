@@ -20,6 +20,10 @@ const AboutSection = () => {
       pt: "Desenvolvedor Full Stack",
       en: "Full Stack Web Developer",
     },
+    heading1: {
+      pt: "PgD em Software Engineering",
+      en: "PgD in Software Engineering",
+    },
     paragraph1: {
       pt: "Desenvolvedor Full Stack dinâmico com mais de 2 anos de experiência liderando projetos web e mobile de ponta a ponta, incluindo sistemas bancários complexos. Domínio em Node.js, SQL, React, React Native, além de implantação de servidores e configuração de aplicações.",
       en: "Dynamic Full-Stack Developer with over 2 years of experience leading end-to-end web and mobile projects, including complex banking systems. Skilled in Node.js, SQL, React, and React Native, as well as server deployment and application configuration.",
@@ -48,7 +52,9 @@ const AboutSection = () => {
           <SpinningPhotograph />
           <div className="flex flex-col items-center font-semibold">
             <h3>Jorge Carlos Dias de Sousa Filho</h3>
-            <h4 className="text-primary">PgD in Software Engineering</h4>
+            <h4 className="text-primary">
+              {aboutTextContent.heading1[language]}
+            </h4>
           </div>
 
           <SocialMediasComponent />
