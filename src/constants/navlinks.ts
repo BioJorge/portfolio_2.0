@@ -14,10 +14,10 @@ export const NAVLINKS = [
     },
   },
   {
-    href: "/education",
+    href: "/journey",
     label: {
-      pt: "Educação",
-      en: "Education",
+      pt: "Jornada",
+      en: "Journey",
     },
   },
   {
