@@ -11,7 +11,7 @@ export default function LanguageToggler({
   const { language, setLanguage } = useLanguageContext();
   return (
     <button
-      className="text-foreground w-fit p-0 text-xl hover:text-primary font-semibold"
+      className="text-secondary w-fit p-0 text-xl hover:text-primary font-semibold"
       onClick={() => setLanguage(language === "en" ? "pt" : "en")}
     >
       {language === "en" ? "PT" : "EN"}

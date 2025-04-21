@@ -30,7 +30,7 @@ const Header = () => {
           <Link
             key={link.href}
             href={link.href}
-            className={`text-lg font-medium transition-colors duration-300 hover:txt-primary ${
+            className={`text-lg font-medium transition-colors duration-300 hover:text-primary ${
               pathname === link.href ? "text-primary" : "text-secondary"
             }`}
           >

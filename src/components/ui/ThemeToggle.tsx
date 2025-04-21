@@ -29,9 +29,9 @@ export const ThemeToggle = ({
       className="hover:cursor-pointer bg-transparent w-fit p-0 text-xl"
     >
       {isDark ? (
-        <Sun className="hover:text-amber-400 bg-transparent text-foreground" />
+        <Sun className="hover:text-primary bg-transparent text-accent" />
       ) : (
-        <Moon className="hover:text-sky-400 bg-transparent text-foreground" />
+        <Moon className="hover:text-sky-400 bg-transparent text-blue-600" />
       )}
       <span className="sr-only">{accessibilityText}</span>
     </button>

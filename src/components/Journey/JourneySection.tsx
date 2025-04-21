@@ -2,7 +2,7 @@
 import React, { ReactNode } from "react";
 import Link from "next/link";
 import { useLanguageContext } from "@/context/LanguageProvider";
-import { Calendar } from "lucide-react";
+import { BookMarked, BriefcaseBusiness, Calendar } from "lucide-react";
 
 /**
  * JourneySection – education & experience timeline
@@ -13,8 +13,14 @@ const JourneySection = () => {
   const { language } = useLanguageContext();
 
   type JourneyItem = {
-    period: string;
-    title: string;
+    period: {
+      en: string;
+      pt: string;
+    };
+    title: {
+      en: string;
+      pt: string;
+    };
     description: {
       en: ReactNode | string;
       pt: ReactNode | string;
@@ -36,36 +42,47 @@ const JourneySection = () => {
   // ---- Data -------------------------------------------------------------
   const education: JourneyItem[] = [
     {
-      period: "2023 – 2024",
-      title: "Software Engineering Post‑Graduate Degree",
+      period: {
+        en: "2023 – 2024",
+        pt: "2023 – 2024",
+      },
+      title: {
+        en: "Software Engineering Post‑Graduate Degree",
+        pt: "Pós-Graduação em Engenharia de Software",
+      },
       description: {
         pt: "Pós‑graduação online em Engenharia de Software pela Descomplica.com.br.",
         en: "Online post‑graduate course in Software Engineering provided by Descomplica.com.br.",
       },
     },
     {
-      period: "2022 – 2023",
-      title: "Full‑Stack Web Developer Course",
+      period: {
+        en: "2022 – 2023",
+        pt: "2022 – 2023",
+      },
+      title: {
+        en: "Full‑Stack Web Developer Course",
+        pt: "Curso de Desenvolvedor Web Full‑Stack",
+      },
       description: {
         pt: (
-          <>
+          <div className="flex flex-col">
             Curso online da Codemaster.pt, organização reconhecida pelo Governo
             de Portugal (INCoDe.2030). Foco em tecnologias front‑end e back‑end:
             <span className="text-primary font-semibold">
               HTML | CSS | JavaScript | PHP | MySQL | Bootstrap
             </span>
             .
-          </>
+          </div>
         ),
         en: (
-          <>
+          <div className="flex flex-col">
             Online course by Codemaster.pt (Portuguese government initiative
             INCoDe.2030). Covered front‑end & back‑end tech:
             <span className="text-primary font-semibold">
               HTML | CSS | JavaScript | PHP | MySQL | Bootstrap
             </span>
-            .
-          </>
+          </div>
         ),
       },
     },
@@ -73,8 +90,14 @@ const JourneySection = () => {
 
   const experience: JourneyItem[] = [
     {
-      period: "2023 – Ongoing",
-      title: "Full‑Stack Developer at InoDev",
+      period: {
+        en: "2023 – Ongoing",
+        pt: "2023 – Presente",
+      },
+      title: {
+        en: "Full‑Stack Developer at InoDev",
+        pt: "Desenvolvedor Full‑Stack na InoDev",
+      },
       description: {
         pt: (
           <>
@@ -107,8 +130,14 @@ const JourneySection = () => {
       },
     },
     {
-      period: "Jul 2023 – Aug 2023",
-      title: "Freelance Full‑Stack Developer at University of Aveiro",
+      period: {
+        en: "Jul 2023 – Aug 2023",
+        pt: "Jul 2023 – Ago 2023",
+      },
+      title: {
+        en: "Freelance Full‑Stack Developer at University of Aveiro",
+        pt: "Desenvolvedor Full‑Stack Freelance na Universidade de Aveiro",
+      },
       description: {
         pt: (
           <>
@@ -140,22 +169,6 @@ const JourneySection = () => {
         ),
       },
     },
-    // {
-    //   period: "2021 – 2022",
-    //   title: "Scientific Investigator at University of Minho",
-    //   description: {
-    //     pt: "Investigador científico no ICVS enquanto concluía o mestrado, aprimorando habilidades de comunicação, trabalho em equipe e pensamento crítico.",
-    //     en: "Scientific investigator at ICVS during master's program, honing communication, teamwork and critical‑thinking skills.",
-    //   },
-    // },
-    // {
-    //   period: "2016 – 2019",
-    //   title: "Academic Leagues & Tutoring (Bachelor's)",
-    //   description: {
-    //     pt: "Participação em ligas acadêmicas e tutoria de colegas durante a graduação em Veterinária, reforçando competências interpessoais.",
-    //     en: "Active in academic leagues and peer tutoring during Veterinary bachelor's degree, strengthening interpersonal skills.",
-    //   },
-    // },
   ];
 
   // ---- Helpers ----------------------------------------------------------
@@ -163,13 +176,22 @@ const JourneySection = () => {
   const ColumnComponent = ({
     array,
     title,
+    type,
   }: {
     array: JourneyItem[];
     title: string;
+    type: "education" | "experience";
   }) => {
     return (
       <div className="grid-cols-1">
-        <h3 className="text-2xl font-semibold mb-8">{title}</h3>
+        <div className="flex gap-2 items-center  mb-8">
+          {type === "education" && <BookMarked size={30} strokeWidth={2} />}
+          {type === "experience" && (
+            <BriefcaseBusiness size={30} strokeWidth={2} />
+          )}
+          <span className="text-2xl font-semibold"> {title}</span>
+        </div>
+
         <ol className=" flex flex-col">
           {array.map((el, idx) => (
             <RenderItem item={el} idx={idx} key={idx} />
@@ -187,16 +209,27 @@ const JourneySection = () => {
         <span className="inline-block h-full w-0.5 bg-primary"></span>
       </div>
 
-      <div className="p-2 border-2 border-primary rounded-sm mb-4">
-        <div className="text-primary font-medium flex gap-2">
-          <Calendar width={24} strokeWidth={2} /> {item.period}
+      <div className="relative border-2 border-primary rounded-sm mb-4 group">
+        <span
+          className={`
+        absolute top-0 left-0 w-full h-full bg-primary/10 z-10 
+        inset-0 transform transition-transform origin-left scale-x-0 group-hover:scale-x-100
+        `}
+        ></span>
+        <div className="relative z-0 bg-background p-2">
+          <div className="text-primary font-medium flex gap-2">
+            <Calendar width={24} strokeWidth={2} />{" "}
+            {item.period[language as keyof typeof item.period]}
+          </div>
+          <h4 className="font-semibold text-lg mt-1">
+            {item.title[language as keyof typeof item.title]}
+          </h4>
+          <p className="text-sm leading-relaxed mt-2 text-justify">
+            {typeof item.description === "string"
+              ? item.description
+              : item.description[language as keyof typeof item.description]}
+          </p>
         </div>
-        <h4 className="font-semibold text-lg mt-1">{item.title}</h4>
-        <p className="text-sm leading-relaxed mt-2 text-justify">
-          {typeof item.description === "string"
-            ? item.description
-            : item.description[language as keyof typeof item.description]}
-        </p>
       </div>
     </li>
   );
@@ -221,6 +254,7 @@ const JourneySection = () => {
               language as keyof typeof copy.columns.education
             ]
           }
+          type="education"
         />
 
         {/* Experience column */}
@@ -231,6 +265,7 @@ const JourneySection = () => {
               language as keyof typeof copy.columns.experience
             ]
           }
+          type="experience"
         />
       </div>
     </section>
